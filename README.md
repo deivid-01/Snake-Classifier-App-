@@ -1,2 +1,2 @@
-# Snake-Classifier-App-
-App to  help identify snake species 
+# Snake-Classifier-App
+Unity App to  help identify snake species using tensorflow
