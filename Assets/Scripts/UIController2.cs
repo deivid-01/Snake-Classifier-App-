@@ -20,9 +20,11 @@ public class UIController2 : MonoBehaviour
 
     public void OpenExplorer()
     {
-        string path = EditorUtility.OpenFilePanel("Select image", "", "");
-
+        #if UNITY_EDITOR
+            string path = EditorUtility.OpenFilePanel("Select image", "", "");
+        
         GetImage(path);
+        #endif
     }
 
     void GetImage(string path)
