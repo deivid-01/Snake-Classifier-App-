@@ -1,7 +1,7 @@
 
 #include <iostream>
 #include <cstring>
-
+#include <cstdarg>
 extern "C" {
 
 const char* UnityTFLiteStringFormat(const char *format, va_list argsOriginal) {

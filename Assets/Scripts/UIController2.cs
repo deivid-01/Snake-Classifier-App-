@@ -1,9 +1,23 @@
-using System.Collections;
+
+// --------------------------------------------------------------------------
+//------- Desarrolladores: -----------------------------
+//-------- David Andrés Torres Betancour-------------------------------------------
+//-------  Contacto : davida.torres@udea.edu.co --------------
+//-------  Jenny Carolina Escobar Sozas    -----------------
+//-------  Contacto:    carolina.escobar@udea.edu.co -------------------
+//------- Proyecto Final del curso Procesamiento Digital de Imagenes----
+//------- V1.5 Septiembre de 2021--------------------------------------------------
+//--------------------------------------------------------------------------
+
 using System.Collections.Generic;
 using UnityEngine;
+#if UNITY_EDITOR
 using UnityEditor;
+#endif
+
+
 using UnityEngine.UI;
-using System.Linq;
+
 public class UIController2 : MonoBehaviour
 {
     public GameObject box_menu;
@@ -20,24 +34,24 @@ public class UIController2 : MonoBehaviour
 
     public void OpenExplorer()
     {
-        #if UNITY_EDITOR
-            string path = EditorUtility.OpenFilePanel("Select image", "", "");
-        
+#if UNITY_EDITOR
+        string path = EditorUtility.OpenFilePanel("Select image", "", "");
+
         GetImage(path);
-        #endif
+#endif
     }
 
     void GetImage(string path)
     {
         if (path != null)
         {
-            Texture2D texture= GetTexture(path);
+            Texture2D texture = GetTexture(path);
             img_snake.texture = texture;
-            Color32[]pixels = GetPixelValues(texture);
+            Color32[] pixels = GetPixelValues(texture);
 
             Prediction.instance.SetInput(pixels, texture.width, texture.height);
 
-            Dictionary<string,float> results =  Prediction.instance.Predict();
+            Dictionary<string, float> results = Prediction.instance.Predict();
 
             int cont = 0;
             foreach (KeyValuePair<string, float> result in results)

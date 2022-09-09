@@ -1,5 +1,14 @@
-// Only works on ARGB32, RGB24 and Alpha8 textures that are marked readable
- 
+
+// --------------------------------------------------------------------------
+//------- Desarrolladores: -----------------------------
+//-------- David Andrés Torres Betancour-------------------------------------------
+//-------  Contacto : davida.torres@udea.edu.co --------------
+//-------  Jenny Carolina Escobar Sozas    -----------------
+//-------  Contacto:    carolina.escobar@udea.edu.co -------------------
+//------- Proyecto Final del curso Procesamiento Digital de Imagenes----
+//------- V1.5 Septiembre de 2021--------------------------------------------------
+//--------------------------------------------------------------------------
+
 using System.Threading;
 using UnityEngine;
  

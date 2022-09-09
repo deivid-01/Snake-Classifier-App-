@@ -1,10 +1,17 @@
-using System.Collections;
+
+// --------------------------------------------------------------------------
+//------- Desarrolladores: -----------------------------
+//-------- David Andrés Torres Betancour-------------------------------------------
+//-------  Contacto : davida.torres@udea.edu.co --------------
+//-------  Jenny Carolina Escobar Sozas    -----------------
+//-------  Contacto:    carolina.escobar@udea.edu.co -------------------
+//------- Proyecto Final del curso Procesamiento Digital de Imagenes----
+//------- V1.5 Septiembre de 2021--------------------------------------------------
+//--------------------------------------------------------------------------
 using System.Collections.Generic;
 using UnityEngine;
 using TensorFlowLite;
 using System.Linq;
-using System;
-using System.IO;
 public class Prediction : MonoBehaviour
 {
     // Start is called before the first frame update
@@ -55,11 +62,12 @@ public class Prediction : MonoBehaviour
         {
             threads = 2,
         };
-        
+        //Load machine learning model
         interpreter = new Interpreter(FileUtil.LoadFile(MODEL_FILENAME), options);
+        //Build model
         interpreter.AllocateTensors();
 
-        //Predict();
+      
     }
     private void OnDestroy()
     {
@@ -93,21 +101,11 @@ public class Prediction : MonoBehaviour
   
     public Dictionary<string, float> Predict()
     {
-       
-  
-        
-         //   print(string.Format("{0} ", preInput[80,100,0]));
-          //  print(string.Format("{0} ", preInput[80,100,1]));
-          //  print(string.Format("{0} ", preInput[80,100,2]));
-      
-     
-
-
         interpreter.SetInputTensorData(0, preInput);
         interpreter.Invoke();
         interpreter.GetOutputTensorData(0, output);
 
-        // ShowOutput(output);
+        
         return ShowBestOutput(output, 3);
 
     }
@@ -115,12 +113,14 @@ public class Prediction : MonoBehaviour
     {
 
         List<float> sortoutput = new List<float>(output);
+
         var result = sortoutput
-     .Select((v, i) => new { v, i })
-     .OrderByDescending(x => x.v)
-     .ThenByDescending(x => x.i)
-     .Take(3)
-     .ToArray();
+                     .Select((v, i) => new { v, i })
+                     .OrderByDescending(x => x.v)
+                     .ThenByDescending(x => x.i)
+                     .Take(3)
+                     .ToArray();
+
         Dictionary<string, float> results = new Dictionary<string, float>();
 
         foreach (var entry in result)
@@ -135,13 +135,7 @@ public class Prediction : MonoBehaviour
 
 
     }
-    void ShowOutput(float[] output)
-    {
-        for (int i = 0; i < output.Length; i++)
-        {
-            print(output[i]);
-        }
-    }
+
 
 
 
